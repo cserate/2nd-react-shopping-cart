@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react'
 import Product from '../Product/Product';
 
@@ -5,8 +6,37 @@ import Product from '../Product/Product';
 function Homepage() {
 
     //create state for product info
-    const [products, setProducts] = React.useState([
-        {
+    //uses const variable [data, function name beginning with set] = React.useState([array here])
+   const [products, setProducts] = React.useState([]);
+
+    //create a function to get the products
+    const fetchProducts = () => {
+        //get the data from the api
+        //store in the products
+        axios.get("https://fakestoreapi.com/products")
+        .then (response => {
+            //console.log(response.data));
+            //assign the data to the products
+            setProducts(response.data);
+        })}
+        //console.log("fetch"); 
+    
+  return (
+    <div>
+        <button onClick = {fetchProducts}>Fetch Products</button>
+        {products.map(item => {
+            return <Product key = {item.id} /*add this to get rid of warning*/
+                            title = {item.title} 
+                            price = {item.price}
+                            category = {item.category}
+                            image = {item.image} />
+        })}
+    </div>
+  )
+}
+
+
+/*{
             "id": 1,
             "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
             "price": 109.95,
@@ -29,25 +59,5 @@ function Homepage() {
             "rate": 3.9,
             "count": 120
             }
-        }
-    ]);
-
-    //create a function to get the products
-    const fetchProducts = () => {
-        console.log("fetch");
-    }
-  return (
-    <div>
-        <button onClick = {fetchProducts}>Fetch Products</button>
-        {products.map(item => {
-            return <Product key = {item.id}
-                            title = {item.title} 
-                            price = {item.price}
-                            category = {item.category}
-                            image = {item.image} />
-        })}
-    </div>
-  )
-}
-
+        }*/
 export default Homepage
