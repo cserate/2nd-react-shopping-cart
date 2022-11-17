@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react'
 import Product from '../Product/Product';
-
+import './Homepage.css'; 
 
 function Homepage() {
 
@@ -19,18 +19,20 @@ function Homepage() {
             //assign the data to the products
             setProducts(response.data);
         })}
-        //console.log("fetch"); 
+        console.log("fetch"); 
     
   return (
     <div>
         <button onClick = {fetchProducts}>Fetch Products</button>
-        {products.map(item => {
-            return <Product key = {item.id} /*add this to get rid of warning*/
-                            title = {item.title} 
-                            price = {item.price}
-                            category = {item.category}
-                            image = {item.image} />
+        <div className='prod-container'>
+            {products.map(item => {
+                return <Product key = {item.id} /*add this to get rid of warning*/
+                                title = {item.title} 
+                                price = {item.price}
+                                category = {item.category}
+                                image = {item.image} />
         })}
+        </div>
     </div>
   )
 }
