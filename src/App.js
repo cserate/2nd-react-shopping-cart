@@ -1,4 +1,6 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import Cart from './Components/Cart/Cart';
 import Homepage from './Components/Homepage/Homepage';
 import Product from './Components/Product/Product';
 
@@ -31,7 +33,13 @@ function App() {
   
   return (
     <div className="App">
-      <Homepage />
+      <BrowserRouter>
+        <Routes>
+          <Route path= '/products' element= {<Homepage />} />
+          <Route path= '/cart' element= {<Cart />} />
+        </Routes>
+      </BrowserRouter>
+     
       
     </div>
   );

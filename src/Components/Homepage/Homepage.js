@@ -21,9 +21,19 @@ function Homepage() {
         })}
         console.log("fetch"); 
     
+        //get data when the page loads using a special hook
+        //useEffect is the hook that acts like a function() and takes 2 parameters
+        //React.useEffect( () => {}, [] )
+        React.useEffect(
+            () => {
+            console.log("page loaded");
+            fetchProducts()
+        }, []
+        )
+        
   return (
     <div>
-        <button onClick = {fetchProducts}>Fetch Products</button>
+        {/* <button onClick = {fetchProducts}>Fetch Products</button> */}
         <div className='prod-container'>
             {products.map(item => {
                 return <Product key = {item.id} /*add this to get rid of warning*/
