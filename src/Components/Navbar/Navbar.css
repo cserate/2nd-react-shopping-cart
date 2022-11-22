@@ -1,0 +1,8 @@
+.navbar {
+    background-color: burlywood;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
